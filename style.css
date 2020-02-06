@@ -1,0 +1,24 @@
+.table>tbody>tr>td,
+.table>tbody>tr>th {
+  border-top: none;
+  border-bottom: none;
+ 
+}
+
+
+.right {
+  width:35%;
+  display:block;
+  float: left;
+}
+.left {
+  width:65%;
+  display:block;
+  float: right;
+}
+p { margin:0 }
+
+.table { 
+  margin: 0;
+  border-spacing:0 0px; 
+} 

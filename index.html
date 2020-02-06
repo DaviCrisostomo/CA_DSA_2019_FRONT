@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Davi Moraes - 2017322">
+  
+  <title>QueueService</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Immigration Service</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+        <!-- <li class="nav-item active">
+            <a class="nav-link" href="#" onClick="window.location.reload();">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>--> 
+<!--A button to make available the functions createQueue() from the file button_functions.js-->
+         <li class="nav-item">
+            <a class="nav-link" id="new_retreat" href="#" onclick=createQueue()>Create</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="docs/DSA_Project_2019.pdf" target="_blank">About</a>
+           <!--   <a href="docs/DSA_Project_2019.pdf" target="_blank">About the Project</a> -->
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+ 
+  <div class="right" id="regDesk">
+    <div class="col-lg-10">
+      <div class="col-lg-10 text-left">
+         
+              <h3 class="mt-5" >Registration</h3>
+               
+                  <form  method="POST" action="#" id="regForm" onsubmit="return validateRegisterForm(this);">
+                    <table class="table" style="width: 50%;">
+                      <thead>
+                        <tr>
+                          <th style="width:10%;border-top: none;"></th>
+                          <th style="width:10%;border-top: none;"></th>
+                        </tr>
+                      </thead>
+                   
+                    
+                      <tr>
+                   <td> <label for="fname">Name</label></td>
+                    <td><input type="text" id="fname" name="firstname" pattern="[a-zA-Z]*" required="true"></td>
+                 
+                  <tr>
+                    <td><label for="lname">Surname</label></td>
+                   <td> <input type="text" id="lname" name="lastname" pattern="[a-zA-Z]*" required="true"></td>
+                   </tr>
+                   <td> <label for="genValues">Gender</label></td>
+                   <td>
+                    <select name="genValues" id="genValues" required="true">
+                     <option value="FEMALE">FEMALE</option>
+                     <option value="MALE">MALE</option>
+                     <option value="UNDEFINED">UNDEFINED</option> 
+                 </select>
+               </td>
+                 <tr>
+                   <td> <label for="pass">Passport</label></td>
+                    <td><input type="text" id="pass" name="passport" required="true"></td>
+                  </tr>
+                  <tr>
+                    <td> <label for="priority">Priority</label></td>
+                     <td>
+                       <select name="priValues" id="priLevel" required="true">
+                        <option value="LOW">LOW</option>
+                        <option value="MEDIUM">MEDIUM</option>
+                        <option value="HIGH">HIGH</option> 
+                    </select>
+                  </td>
+                   </tr>
+                   
+                  </table>
+                    <input type="submit" id="reg-button" value="Submit">
+                  </form>
+      </div>
+      <div class="col-lg-10 text-left">
+         
+        <h3 class="mt-5" >Search / Edit</h3>
+         
+    
+              <table class="table" style="width: 50%;">
+                <thead>
+                  <tr>
+                    <th style="width:10%;border-top: none;"></th>
+                    <th style="width:10%;border-top: none;"></th>
+                  </tr>
+                </thead>
+             
+              <tbody>
+                <tr>
+             <td> <label for="idSearch">Id:</label></td>
+             <td name="id" id="idSearch">----</td>
+            </tr>
+                <tr>
+             <td> <label for="fName">Name:</label></td>
+             <td name="fName" id="nameSearch" pattern="[a-zA-Z]*" required="true">----</td>
+            </tr>
+            <tr>
+              <td><label for="lName">Surname:</label></td>
+              <td name="lName" id="lnameSearch" pattern="[a-zA-Z]*" required="true">----</td>
+           </tr>
+           <tr>
+            <td> <label for="gender">Gender:</label></td>
+            <td name="pass" id="genderSearch" required="true">----</td>
+           </tr>
+            <tr>
+             <td> <label for="pass">Passport:</label></td>
+             <td name="pass" id="passSearch" required="true">----</td>
+            </tr>
+            <tr>
+              <td> <label for="priority" >Priority:</label></td>
+              <td name="priority" id="prioSearch">----</td>
+             </tr>
+             <tr>
+              <td> <label for="arrival" >Arrival:</label></td>
+              <td name="arrival" id="arrivalSearch">----</td>
+             </tr>
+             <tr>
+              <td> <label for="status">Status:</label></td>
+              <td name="status" id="statusSearch">----</td>
+             </tr>
+             <tr>
+              <td> <label for="position" >Position:</label></td>
+              <td id="posSearch">----</td>
+             </tr>
+            </table>
+              <input type="submit" value="Search" onclick="search(document.getElementById('searchId').value)">
+              <input type="search" style="width: 80px;" id="searchId" pattern="^[1-9]\d*$">
+              <input type="submit" value="Submit" onclick="updateThis()">
+              <input type="submit" value="Delete" name="delete" onclick="deleteThis(document.getElementById('idSearch').innerHTML)"></br>
+              <input type="submit" value="Del.Qt." onclick="deleteQt(document.getElementById('delQt').value)">
+              <input type="search" style="width: 80px;"name="delQt" id="delQt">
+   
+         
+</div>
+
+
+    </div>
+   
+  </div>
+  <div class="left " >
+    <h3 class="mt-5 " >Desk Service</h3></br>
+    <div class="row float-center" id="callDesk"></div>
+    </div>
+
+ <!-- <div class="row" id="cardDiv"></div>-->
+
+
+ <link href="style.css" rel="stylesheet">
+
+
+
+
+ 
+  <!-- Bootstrap core JavaScript -->
+  <script src="jquery/jquery.slim.min.js"></script>
+  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!--<script type="text/jQuery"src="jquery-3.4.1.min.js"></script>!-->
+  <script src="create_queue.js"></script>
+  <script src="populate_desk.js"></script>
+  <script src="form_validation.js"></script>
+  <script src="button_functions.js"></script>
+  <script src="http_request.js"></script>
+  <script src="view.js"></script>
+</body>
+
+</html>
