@@ -94,7 +94,3 @@ switch(gender){
 
 }
 
-function insertAbout() {
-
-  div.innerHTML = `<embed src="docs/DSA_Project_2019.pdf" type="application/pdf" width="100%" height="600px" />`
-}
